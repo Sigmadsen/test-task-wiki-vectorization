@@ -14,7 +14,15 @@ tokenizer = BertTokenizer.from_pretrained("bert-base-uncased")
 model = BertModel.from_pretrained("bert-base-uncased")
 
 
-def vectorize_chunks(chunks):
+from FlagEmbedding import FlagAutoModel
+
+model_2026 = FlagAutoModel.from_finetuned('BAAI/bge-base-en-v1.5',
+                                      query_instruction_for_retrieval="Represent this sentence for searching relevant passages:",
+                                      use_fp16=True)
+
+
+
+def vectorize_chunks_with_bert(chunks):
     vectors = []
 
     for chunk in chunks:
@@ -34,13 +42,17 @@ def vectorize_chunks(chunks):
 
     return vectors
 
+#BAAI/bge-small-en-v1.5
+def vectorize_chunks_with_bge_small(chunks:list[str]):
+    return model_2026.encode(chunks)
 
-if __name__ == '__main__':
-    # save to files
-    for file in ARTICLES_TXT:
-        vector_file_name = file.split(".")[0]
-        with open(file, "r", encoding="utf-8") as file:
-            text = file.read()
-        chunks = chunk_text(text)
-        vectors = vectorize_chunks(chunks)
-        np.save(f"{vector_file_name}.npy", vectors)
+
+# if __name__ == '__main__':
+#     # save to files
+#     # for file in ARTICLES_TXT:
+#     #     vector_file_name = file.split(".")[0]
+#     #     with open(file, "r", encoding="utf-8") as file:
+#     #         text = file.read()
+#     #     chunks = chunk_text(text)
+#     #     vectors = vectorize_chunks_with_bert(chunks)
+#     #     np.save(f"{vector_file_name}.npy", vectors)

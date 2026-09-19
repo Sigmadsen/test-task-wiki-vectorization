@@ -8,7 +8,7 @@ from nltk.tokenize import sent_tokenize
 nltk.download("punkt_tab")
 
 
-def chunk_text(text, max_chunk_size=1000):
+def chunk_text(text, max_chunk_size:int=1000)-> list[str]:
     sentences = sent_tokenize(text)
     chunks = []
     current_chunk = ""

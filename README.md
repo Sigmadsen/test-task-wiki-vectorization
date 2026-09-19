@@ -1,3 +1,5 @@
+PYTHON 3.14.6
+
 (Not solwed)
 
 # test-wiki-vectorization
