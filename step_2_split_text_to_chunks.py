@@ -28,6 +28,10 @@ def chunk_text(text, max_chunk_size=1000):
 
     return chunks
 
+def read_file_into_text(link:str="data/Machine_learning.txt")->str:
+    with open(link, "r", encoding="utf-8") as file:
+        text = file.read()
+    return text
 
 if __name__ == "__main__":
     with open("data/Machine_learning.txt", "r", encoding="utf-8") as file:

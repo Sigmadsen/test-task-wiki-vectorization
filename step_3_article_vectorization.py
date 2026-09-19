@@ -35,12 +35,12 @@ def vectorize_chunks(chunks):
     return vectors
 
 
-# if __name__ == '__main__':
-#     # save to files
-#     for file in ARTICLES_TXT:
-#         vector_file_name = file.split(".")[0]
-#         with open(file, "r", encoding="utf-8") as file:
-#             text = file.read()
-#         chunks = chunk_text(text)
-#         vectors = vectorize_chunks(chunks)
-#         np.save(f"{vector_file_name}.npy", vectors)
+if __name__ == '__main__':
+    # save to files
+    for file in ARTICLES_TXT:
+        vector_file_name = file.split(".")[0]
+        with open(file, "r", encoding="utf-8") as file:
+            text = file.read()
+        chunks = chunk_text(text)
+        vectors = vectorize_chunks(chunks)
+        np.save(f"{vector_file_name}.npy", vectors)
